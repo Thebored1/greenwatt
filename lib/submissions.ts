@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 
 export interface Submission {
   id: string;
@@ -17,7 +17,8 @@ export async function getSubmissions(filters?: {
   team?: string;
   unread?: boolean;
 }): Promise<Submission[]> {
-  let query = supabase
+  const db = getSupabase();
+  let query = db
     .from("greenwatt_contact_submissions")
     .select("*")
     .order("created_at", { ascending: false });
@@ -39,14 +40,14 @@ export async function insertSubmission(data: {
   team: string | null;
   message: string | null;
 }): Promise<void> {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from("greenwatt_contact_submissions")
     .insert(data);
   if (error) throw error;
 }
 
 export async function toggleRead(id: string, is_read: boolean): Promise<void> {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from("greenwatt_contact_submissions")
     .update({ is_read })
     .eq("id", id);
