@@ -13,9 +13,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
+  const url = `https://greenwatt.vercel.app/services/${slug}`;
   return {
-    title: `${service.name} | Greenwatt Global Ventures`,
+    title: service.name,
     description: service.tagline,
+    alternates: { canonical: url },
+    openGraph: { url, title: service.name, description: service.tagline },
   };
 }
 
