@@ -32,11 +32,21 @@ export default async function SubmissionsPage({
   const teamFilter = params.team;
   const unreadOnly = params.unread === "1";
 
-  const all = await getSubmissions();
-  const filtered = await getSubmissions({
-    team: teamFilter,
-    unread: unreadOnly || undefined,
-  });
+  let all: Awaited<ReturnType<typeof getSubmissions>> = [];
+  let filtered: typeof all = [];
+  let dbError: string | null = null;
+
+  try {
+    [all, filtered] = await Promise.all([
+      getSubmissions(),
+      getSubmissions({ team: teamFilter, unread: unreadOnly || undefined }),
+    ]);
+  } catch (err) {
+    dbError =
+      process.env.NODE_ENV === "development"
+        ? String(err)
+        : "Could not connect to the database. Check that NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set in your Vercel environment variables, then redeploy.";
+  }
 
   const totalUnread = all.filter((s) => !s.is_read).length;
 
@@ -50,6 +60,12 @@ export default async function SubmissionsPage({
 
   return (
     <div className="space-y-6">
+      {dbError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+          <strong className="font-semibold">Database error:</strong> {dbError}
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
