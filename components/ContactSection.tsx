@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { submitContact } from "@/app/actions/contact";
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -7,11 +8,22 @@ export default function ContactSection() {
     team: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      const result = await submitContact(formData);
+      if (result.status === "success") setSubmitted(true);
+      else setError(result.message);
+    });
+  };
 
   return (
     <section id="contact" className="py-16 md:py-20 bg-white">
@@ -87,7 +99,7 @@ export default function ContactSection() {
                   Thank you for contacting Greenwatt. Our team will get back to you within 24 hours.
                 </p>
                 <button
-                  onClick={() => { setSubmitted(false); setForm({ name: "", company: "", designation: "", email: "", phone: "", team: "", message: "" }); }}
+                  onClick={() => { setSubmitted(false); setError(null); setForm({ name: "", company: "", designation: "", email: "", phone: "", team: "", message: "" }); }}
                   className="mt-2 px-6 py-2.5 bg-[#0B7F3B] text-white text-sm font-semibold rounded hover:bg-[#027D32] transition-colors"
                 >
                   Send Another
@@ -95,6 +107,11 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded px-3 py-2">
+                    {error}
+                  </p>
+                )}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-[#292929] mb-1.5">Your Name <span className="text-red-500">*</span></label>
@@ -145,9 +162,9 @@ export default function ContactSection() {
                   <textarea name="message" value={form.message} onChange={set} rows={4}
                     className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0B7F3B] focus:border-transparent resize-none" />
                 </div>
-                <button type="submit"
-                  className="w-full py-3 bg-[#0B7F3B] text-white font-bold text-sm uppercase tracking-wider rounded hover:bg-[#027D32] transition-colors shadow-sm">
-                  Send Message
+                <button type="submit" disabled={isPending}
+                  className="w-full py-3 bg-[#0B7F3B] text-white font-bold text-sm uppercase tracking-wider rounded hover:bg-[#027D32] transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                  {isPending ? "Sending…" : "Send Message"}
                 </button>
               </form>
             )}

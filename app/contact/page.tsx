@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { submitContact } from "@/app/actions/contact";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -10,11 +11,22 @@ export default function ContactPage() {
     team: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      const result = await submitContact(formData);
+      if (result.status === "success") setSubmitted(true);
+      else setError(result.message);
+    });
+  };
 
   const regions = [
     "Delhi NCR and North India",
@@ -138,7 +150,7 @@ export default function ContactPage() {
                     Thank you for contacting Greenwatt. Our team will respond within one working day.
                   </p>
                   <button
-                    onClick={() => { setSubmitted(false); setForm({ name: "", company: "", designation: "", email: "", phone: "", team: "", message: "" }); }}
+                    onClick={() => { setSubmitted(false); setError(null); setForm({ name: "", company: "", designation: "", email: "", phone: "", team: "", message: "" }); }}
                     className="mt-2 px-6 py-2.5 bg-[#0B7F3B] text-white text-sm font-semibold rounded hover:bg-[#027D32] transition-colors"
                   >
                     Send Another Enquiry
@@ -146,6 +158,11 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {error && (
+                    <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded px-3 py-2">
+                      {error}
+                    </p>
+                  )}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-[#292929] mb-1.5">Your Name <span className="text-red-500">*</span></label>
@@ -187,8 +204,9 @@ export default function ContactPage() {
                     <label className="block text-xs font-semibold text-[#292929] mb-1.5">Your Message</label>
                     <textarea name="message" value={form.message} onChange={set} rows={5} className="w-full border border-gray-200 rounded px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0B7F3B] resize-none" />
                   </div>
-                  <button type="submit" className="w-full py-3 bg-[#0B7F3B] text-white font-bold text-sm uppercase tracking-wider rounded hover:bg-[#027D32] transition-colors">
-                    Send Message
+                  <button type="submit" disabled={isPending}
+                    className="w-full py-3 bg-[#0B7F3B] text-white font-bold text-sm uppercase tracking-wider rounded hover:bg-[#027D32] transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                    {isPending ? "Sending…" : "Send Message"}
                   </button>
                 </form>
               )}
