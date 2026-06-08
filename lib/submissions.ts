@@ -1,4 +1,4 @@
-import { db } from "./db";
+import { supabase } from "./supabase";
 
 export interface Submission {
   id: string;
@@ -17,31 +17,17 @@ export async function getSubmissions(filters?: {
   team?: string;
   unread?: boolean;
 }): Promise<Submission[]> {
-  if (filters?.team && filters?.unread) {
-    return db<Submission[]>`
-      select * from greenwatt_contact_submissions
-      where team = ${filters.team} and is_read = false
-      order by created_at desc
-    `;
-  }
-  if (filters?.team) {
-    return db<Submission[]>`
-      select * from greenwatt_contact_submissions
-      where team = ${filters.team}
-      order by created_at desc
-    `;
-  }
-  if (filters?.unread) {
-    return db<Submission[]>`
-      select * from greenwatt_contact_submissions
-      where is_read = false
-      order by created_at desc
-    `;
-  }
-  return db<Submission[]>`
-    select * from greenwatt_contact_submissions
-    order by created_at desc
-  `;
+  let query = supabase
+    .from("greenwatt_contact_submissions")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (filters?.team) query = query.eq("team", filters.team);
+  if (filters?.unread) query = query.eq("is_read", false);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data ?? []) as Submission[];
 }
 
 export async function insertSubmission(data: {
@@ -53,19 +39,16 @@ export async function insertSubmission(data: {
   team: string | null;
   message: string | null;
 }): Promise<void> {
-  await db`
-    insert into greenwatt_contact_submissions
-      (name, company, designation, email, phone, team, message)
-    values
-      (${data.name}, ${data.company}, ${data.designation},
-       ${data.email}, ${data.phone}, ${data.team}, ${data.message})
-  `;
+  const { error } = await supabase
+    .from("greenwatt_contact_submissions")
+    .insert(data);
+  if (error) throw error;
 }
 
 export async function toggleRead(id: string, is_read: boolean): Promise<void> {
-  await db`
-    update greenwatt_contact_submissions
-    set is_read = ${is_read}
-    where id = ${id}
-  `;
+  const { error } = await supabase
+    .from("greenwatt_contact_submissions")
+    .update({ is_read })
+    .eq("id", id);
+  if (error) throw error;
 }
