@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
-const BASE = "https://demo.virtualxcellence.com/greenwatt/wp-content/uploads";
+const BASE = "/wp-uploads";
 
 const products = [
   {
@@ -47,7 +47,7 @@ const products = [
   {
     name: "Relay Test Kit",
     description:
-      "GREENWATT offers advanced relay testing and power calibration solutions, including MULTI-JAPAN technologies, designed for precise protection system validation, commissioning, and maintenance of electrical networks.",
+      "GREENWATT offers advanced relay testing and power calibration solutions designed for precise protection system validation, commissioning, and maintenance of electrical networks.",
     image: `${BASE}/2026/04/K3063i_L_15D-GW-Kingsine-min-300x200-2.png`,
     features: ["3-Phase & Universal Testing Capability", "High Precision Calibration", "Automated Test Sequences", "Portable & Field-Ready Design"],
     icons: [
@@ -59,17 +59,48 @@ const products = [
   },
 ];
 
-export default function FeaturedProducts() {
-  const [active, setActive] = useState(0);
+const INTERVAL = 2500;
 
-  const prev = () => setActive((a) => (a === 0 ? products.length - 1 : a - 1));
-  const next = () => setActive((a) => (a === products.length - 1 ? 0 : a + 1));
+export default function FeaturedProducts() {
+  const [active,  setActive]  = useState(0);
+  const [paused,  setPaused]  = useState(false);
+  const [animKey, setAnimKey] = useState(0);
+
+  const goTo = useCallback((i: number) => {
+    setActive(i);
+    setAnimKey(k => k + 1);
+  }, []);
+
+  const prev = useCallback(() =>
+    goTo(active === 0 ? products.length - 1 : active - 1), [active, goTo]);
+
+  const next = useCallback(() =>
+    goTo(active === products.length - 1 ? 0 : active + 1), [active, goTo]);
+
+  /* auto-advance — resets whenever active changes or pause toggles */
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => {
+      setActive(a => {
+        const n = a === products.length - 1 ? 0 : a + 1;
+        setAnimKey(k => k + 1);
+        return n;
+      });
+    }, INTERVAL);
+    return () => clearInterval(t);
+  }, [paused, active]);
 
   const p = products[active];
 
   return (
-    <section id="products" className="py-16 md:py-20 bg-white">
+    <section
+      id="products"
+      className="py-16 md:py-20 bg-white"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="max-w-7xl mx-auto px-4">
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
@@ -81,59 +112,99 @@ export default function FeaturedProducts() {
           </div>
           {/* Prev / Next */}
           <div className="flex items-center gap-2">
-            <button onClick={prev} className="w-10 h-10 border-2 border-[#0B7F3B] text-[#0B7F3B] rounded flex items-center justify-center hover:bg-[#0B7F3B] hover:text-white transition-colors">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            <button
+              onClick={prev}
+              className="w-10 h-10 border-2 border-[#0B7F3B] text-[#0B7F3B] rounded flex items-center justify-center hover:bg-[#0B7F3B] hover:text-white transition-colors"
+              aria-label="Previous"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
-            <button onClick={next} className="w-10 h-10 border-2 border-[#0B7F3B] text-[#0B7F3B] rounded flex items-center justify-center hover:bg-[#0B7F3B] hover:text-white transition-colors">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            <button
+              onClick={next}
+              className="w-10 h-10 border-2 border-[#0B7F3B] text-[#0B7F3B] rounded flex items-center justify-center hover:bg-[#0B7F3B] hover:text-white transition-colors"
+              aria-label="Next"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* Slide */}
-        <div className="grid md:grid-cols-2 gap-0 border border-gray-100 rounded-xl overflow-hidden shadow-sm">
-          {/* Image */}
-          <div className="bg-[#f9fafb] flex items-center justify-center p-10 min-h-[320px]">
+        {/* Slide — key forces re-mount → re-animation on every change */}
+        <div
+          key={animKey}
+          className="carousel-slide grid md:grid-cols-2 gap-0 border border-gray-100 rounded-2xl overflow-hidden shadow-md"
+        >
+          {/* Image panel */}
+          <div className="bg-[#f4f6f8] flex items-center justify-center p-10 md:p-14 min-h-[420px]">
             <Image
               src={p.image}
               alt={p.name}
-              width={360}
-              height={280}
-              className="object-contain max-h-60 w-auto"
+              width={480}
+              height={420}
+              className="object-contain w-full max-h-[360px]"
               unoptimized
+              priority
             />
           </div>
 
-          {/* Content */}
-          <div className="p-8 md:p-10 bg-white">
-            <h3 className="text-xl md:text-2xl font-bold text-[#292929] mb-3">{p.name}</h3>
-            <p className="text-[#54595F] text-sm leading-relaxed mb-6">{p.description}</p>
+          {/* Content panel */}
+          <div className="p-8 md:p-12 bg-white flex flex-col justify-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#292929] mb-3">{p.name}</h3>
+            <p className="text-[#54595F] text-sm leading-relaxed mb-7">{p.description}</p>
 
-            <div className="grid grid-cols-2 gap-3 mb-7">
+            <div className="grid grid-cols-2 gap-3 mb-8">
               {p.features.map((f, i) => (
-                <div key={f} className="flex items-center gap-2.5 bg-[#f9fafb] rounded-lg p-3 border border-gray-100">
-                  <Image src={p.icons[i]} alt={f} width={26} height={26} className="object-contain flex-shrink-0" unoptimized />
+                <div
+                  key={f}
+                  className="flex items-center gap-3 bg-[#f9fafb] rounded-xl p-3.5 border border-gray-100"
+                >
+                  <Image
+                    src={p.icons[i]}
+                    alt={f}
+                    width={28}
+                    height={28}
+                    style={{ width: 28, height: 28 }}
+                    className="object-contain flex-shrink-0"
+                    unoptimized
+                  />
                   <span className="text-xs text-[#292929] font-medium leading-tight">{f}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex gap-3">
-              <a href="#contact" className="px-6 py-2.5 bg-[#0B7F3B] text-white text-sm font-semibold rounded hover:bg-[#027D32] transition-colors">
+              <a
+                href="#contact"
+                className="px-6 py-2.5 bg-[#0B7F3B] text-white text-sm font-semibold rounded hover:bg-[#027D32] transition-colors"
+              >
                 Take Enquiry
               </a>
-              <a href="#contact" className="px-6 py-2.5 border-2 border-[#0B7F3B] text-[#0B7F3B] text-sm font-semibold rounded hover:bg-[#D9FFDE] transition-colors">
+              <a
+                href="#contact"
+                className="px-6 py-2.5 border-2 border-[#0B7F3B] text-[#0B7F3B] text-sm font-semibold rounded hover:bg-[#D9FFDE] transition-colors"
+              >
                 Full Specs
               </a>
             </div>
           </div>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-5">
+        {/* Dot / progress indicators */}
+        <div className="flex justify-center items-center gap-2 mt-6">
           {products.map((_, i) => (
-            <button key={i} onClick={() => setActive(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ${i === active ? "bg-[#0B7F3B]" : "bg-gray-300"}`}
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-500 ${
+                i === active
+                  ? "bg-[#0B7F3B] w-8"
+                  : "bg-gray-300 w-2.5 hover:bg-gray-400"
+              }`}
             />
           ))}
         </div>

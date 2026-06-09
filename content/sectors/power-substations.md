@@ -17,7 +17,7 @@ Power transformers represent the largest single capital investment in any substa
 - **Thermal imaging** — bushing hot spots and cooler blockage detection
 
 ### Protection & Relay Testing
-- Kingsine relay test systems for commissioning and periodic testing of overcurrent, distance, differential, earth fault, and auto-reclose protection
+- Protection relay test systems for commissioning and periodic testing of overcurrent, distance, differential, earth fault, and auto-reclose protection
 - IEC 61850 GOOSE and sampled values testing for modern numerical IED panels
 - CT accuracy and excitation curve verification
 

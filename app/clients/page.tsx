@@ -60,7 +60,6 @@ const clientGroups = [
     title: "Technology Partners",
     clients: [
       { name: "AB Chance (Hubbell)", desc: "Electrical safety and live-line tools" },
-      { name: "Kingsine", desc: "Protection relay test equipment" },
       { name: "OFIL Systems", desc: "UV corona and gas detection cameras (Israel)" },
       { name: "Satir", desc: "Thermal imaging cameras" },
       { name: "MULTI-JAPAN", desc: "Solar PV testing instruments" },

@@ -1,6 +1,6 @@
 "use client";
-const VIDEO = "https://demo.virtualxcellence.com/greenwatt/wp-content/uploads/2026/04/Video-Project-14-1-1.mp4";
-const POSTER = "https://demo.virtualxcellence.com/greenwatt/wp-content/uploads/2026/04/Untitled-1.webp";
+const VIDEO = "/wp-uploads/2026/04/Video-Project-14-1-1.mp4";
+const POSTER = "/wp-uploads/2026/04/Untitled-1.webp";
 
 export default function Hero() {
   return (

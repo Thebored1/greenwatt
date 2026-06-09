@@ -12,7 +12,7 @@ export interface Product {
   specs?: { label: string; value: string }[];
 }
 
-const BASE = "https://demo.virtualxcellence.com/greenwatt/wp-content/uploads";
+const BASE = "/wp-uploads";
 
 export const products: Product[] = [
   {
@@ -55,11 +55,11 @@ export const products: Product[] = [
     name: "Relay Testing Equipment",
     category: "Protection & Relay Testing",
     categorySlug: "relay-testing",
-    tagline: "Kingsine K3063i & K68i Protection Relay Test Systems",
-    brand: "Kingsine",
+    tagline: "K3063i & K68i Protection Relay Test Systems",
+    brand: "Protection Relay",
     image: `${BASE}/2026/04/K3063i_L_15D-GW-Kingsine-min-300x200-2.png`,
     description:
-      "Green Watt is an authorised partner for Kingsine, a globally recognised manufacturer of protection relay test sets. Kingsine instruments are used by power utilities, relay manufacturers, and commissioning engineers worldwide to verify the performance of electromechanical, static, and numerical protection relays.",
+      "Green Watt is an authorised partner for a globally recognised manufacturer of protection relay test sets. These instruments are used by power utilities, relay manufacturers, and commissioning engineers worldwide to verify the performance of electromechanical, static, and numerical protection relays.",
     features: [
       "3 voltage + 3 current outputs (K3063i), expandable to 6 current channels",
       "High current output up to 90 A per channel for electromechanical relays",

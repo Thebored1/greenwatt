@@ -30,9 +30,15 @@
 }
 .dropdown-menu { animation: fadeDown 0.2s ease-out; }
 
+@keyframes carouselFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.carousel-slide { animation: carouselFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-25%); }
 }
 .marquee-track { animation: marquee 20s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }

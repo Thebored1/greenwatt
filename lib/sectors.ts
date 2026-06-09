@@ -35,7 +35,7 @@ export const sectors: Sector[] = [
       {
         title: "Protection & Relay Testing",
         items: [
-          "Kingsine relay test systems for commissioning and periodic testing",
+          "Protection relay test systems for commissioning and periodic testing",
           "IEC 61850 GOOSE and sampled values testing for modern numerical IEDs",
           "CT accuracy and excitation curve verification",
         ],

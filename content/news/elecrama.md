@@ -14,12 +14,12 @@ At ELECRAMA, Green Watt presents its full portfolio of electrical testing equipm
 
 - See live demonstrations of instruments including relay test sets, thermal imagers, partial discharge detectors, transformer diagnostic equipment, and solar PV testers
 - Speak with Green Watt's technical team about specific testing challenges and receive application guidance
-- Meet representatives from Green Watt's principal partners — Kingsine, OFIL Systems, Satir, and AB Chance — when present at the show
+- Meet representatives from Green Watt's principal partners — OFIL Systems, Satir, and AB Chance — when present at the show
 - Learn about new products and upcoming technology developments
 
 ## Key Products Showcased
 
-- Kingsine K3063i and K68i protection relay test systems
+- K3063i and K68i protection relay test systems
 - Penta-PD partial discharge detection system
 - Thermal imaging cameras (Satir range)
 - OFIL UV corona detection cameras

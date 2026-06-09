@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-const BASE = "https://demo.virtualxcellence.com/greenwatt";
 
 const stats = [
   { value: "15", suffix: "+", label: "Years Experience" },
@@ -17,7 +16,7 @@ export default function AboutSection() {
           {/* Left: image */}
           <div className="relative">
             <Image
-              src={`${BASE}/wp-content/uploads/2026/04/Untitled-1.webp`}
+              src="/wp-uploads/2026/04/Untitled-1.webp"
               alt="Greenwatt – Built by Engineers"
               width={560}
               height={500}

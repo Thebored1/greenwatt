@@ -1,12 +1,12 @@
 # Relay Testing Equipment — Protection Relay Test Systems
 
-## Kingsine Protection Relay Test Systems
+## Protection Relay Test Systems
 
-Green Watt is an authorised partner for Kingsine, a globally recognised manufacturer of protection relay test sets. Kingsine instruments are used by power utilities, relay manufacturers, and commissioning engineers worldwide to verify the performance of electromechanical, static, and numerical protection relays — ensuring that protection systems operate correctly and within their specified parameters.
+Green Watt is an authorised partner for a globally recognised manufacturer of protection relay test sets. These instruments are used by power utilities, relay manufacturers, and commissioning engineers worldwide to verify the performance of electromechanical, static, and numerical protection relays — ensuring that protection systems operate correctly and within their specified parameters.
 
 ## Models Available
 
-### Kingsine K3063i — Three-Phase Relay Test Set
+### K3063i — Three-Phase Relay Test Set
 The K3063i is a high-performance, three-phase protection relay test system capable of testing virtually all relay types used in modern power systems, including distance protection, differential protection, overcurrent, directional earth fault, and auto-recloser schemes.
 
 **Key Features:**
@@ -19,7 +19,7 @@ The K3063i is a high-performance, three-phase protection relay test system capab
 - GPS/IRIG-B synchronisation for differential relay testing
 - Rugged aluminium case for field transport
 
-### Kingsine K68i — New Generation Relay Test Set
+### K68i — New Generation Relay Test Set
 The K68i is a next-generation, compact relay test set with an integrated touch-screen interface, designed for both routine maintenance testing and advanced IED commissioning.
 
 **Key Features:**

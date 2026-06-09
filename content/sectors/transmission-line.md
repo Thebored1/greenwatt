@@ -24,7 +24,7 @@ Corona discharge on energised HV hardware, insulator strings, and conductors pro
 
 ## Protection Testing at Transmission Substations
 
-Transmission line protection relies on distance protection (impedance relay), current differential protection (pilot fibre), and teleprotection schemes — all of which require precise periodic testing using advanced relay test equipment such as the Kingsine K3063i.
+Transmission line protection relies on distance protection (impedance relay), current differential protection (pilot fibre), and teleprotection schemes — all of which require precise periodic testing using advanced relay test equipment such as the K3063i protection relay test set.
 
 - End-to-end distance relay zone reach and time verification
 - Pilot protection scheme testing (POTT, DUTT, blocking schemes)

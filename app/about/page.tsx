@@ -9,7 +9,6 @@ export const metadata = {
 };
 
 const partners = [
-  { name: "Kingsine", desc: "Protection relay test systems (K3063i, K68i series)" },
   { name: "OFIL Systems", desc: "UV corona cameras and SF6 gas detection cameras" },
   { name: "Satir", desc: "Thermal imaging cameras for electrical diagnostics" },
   { name: "AB Chance (Hubbell)", desc: "Electrical safety and live-line tools" },

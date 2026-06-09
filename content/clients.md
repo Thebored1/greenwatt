@@ -49,7 +49,6 @@ Green Watt is privileged to count among its clients some of the most important o
 ## International Partners and Principals
 
 - **AB Chance** (Hubbell) — electrical safety and live-line tools
-- **Kingsine** — protection relay test equipment
 - **OFIL Systems** (Israel) — UV corona and gas detection cameras
 - **Satir** — thermal imaging cameras
 - **Kisgen / Huaying** — transformer diagnostic and HV test equipment

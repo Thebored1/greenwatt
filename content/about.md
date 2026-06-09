@@ -15,7 +15,6 @@ To enhance the safety, reliability, and efficiency of India's electrical infrast
 **Technical Depth:** Our team comprises qualified electrical and instrumentation engineers who understand how the Indian grid operates, what standards apply (IS, IEC, CEA regulations), and how testing results translate into maintenance decisions.
 
 **Trusted Global Principals:** Green Watt is an authorised partner for internationally recognised brands including:
-- **Kingsine** — protection relay test systems (K3063i, K68i series)
 - **OFIL Systems** — UV corona cameras and SF6 gas detection cameras
 - **Satir** — thermal imaging cameras for electrical diagnostics
 - **AB Chance** — electrical safety and live-line tools

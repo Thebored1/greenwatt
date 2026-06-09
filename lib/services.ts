@@ -115,7 +115,7 @@ export const services: Service[] = [
         title: "Commissioning Testing",
         items: [
           "Visual inspection of relay panel wiring against approved drawings",
-          "Secondary injection testing of each relay element with Kingsine test equipment",
+          "Secondary injection testing of each relay element with advanced relay test equipment",
           "Verification of relay settings against protection coordination study",
           "Binary input and output functional testing",
           "CT and PT circuit continuity, polarity, and burden verification",
@@ -136,7 +136,7 @@ export const services: Service[] = [
       {
         title: "IED (Intelligent Electronic Device) Testing",
         items: [
-          "IEC 61850 GOOSE message functional testing using Kingsine K68i",
+          "IEC 61850 GOOSE message functional testing using K68i relay test set",
           "Setting file version verification and change management record",
           "Disturbance record retrieval and analysis",
         ],

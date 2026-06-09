@@ -51,7 +51,7 @@ export default function ElecramaPage() {
                 {[
                   "See live demonstrations of instruments including relay test sets, thermal imagers, partial discharge detectors, transformer diagnostic equipment, and solar PV testers",
                   "Speak with Green Watt's technical team about specific testing challenges and receive application guidance",
-                  "Meet representatives from Green Watt's principal partners — Kingsine, OFIL Systems, Satir, and AB Chance — when present at the show",
+                  "Meet representatives from Green Watt's principal partners — OFIL Systems, Satir, and AB Chance — when present at the show",
                   "Learn about new products and upcoming technology developments",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-[#54595F]">
@@ -68,7 +68,7 @@ export default function ElecramaPage() {
               </h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
-                  { name: "Relay Testing", link: "/products/relay-testing-equipment", desc: "Kingsine K3063i and K68i protection relay test systems" },
+                  { name: "Relay Testing", link: "/products/relay-testing-equipment", desc: "K3063i and K68i protection relay test systems" },
                   { name: "Partial Discharge", link: "/products/partial-discharge-detectors", desc: "Penta-PD multi-channel detection system" },
                   { name: "Thermal Imaging", link: "/products/thermal-imagers", desc: "Satir range of infrared cameras" },
                   { name: "UV Corona Cameras", link: "/products/gas-detection-cameras", desc: "OFIL UV corona detection cameras" },

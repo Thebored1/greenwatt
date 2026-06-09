@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const BASE = "https://demo.virtualxcellence.com/greenwatt";
 
 const quickLinks = ["Solutions", "Products", "Industries", "About Us", "Contact Us"];
 
@@ -21,7 +20,7 @@ export default function Footer() {
         {/* Col 1 — Brand */}
         <div>
           <Image
-            src={`${BASE}/wp-content/uploads/2026/04/logo-white-foot.png`}
+            src="/wp-uploads/2026/04/logo-white-foot.png"
             alt="Greenwatt"
             width={150}
             height={48}

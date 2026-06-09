@@ -10,7 +10,7 @@ The protection relay system is the last line of defence against electrical fault
 Complete relay panel commissioning prior to energisation of new substations or feeder extensions, including:
 
 - Visual inspection of relay panel wiring against approved drawings
-- Secondary injection testing of each relay element with Kingsine relay test equipment
+- Secondary injection testing of each relay element with advanced relay test equipment
 - Verification of relay settings against protection coordination study
 - Binary input and output (auxiliary relay) functional testing
 - CT and PT circuit continuity, polarity, and burden verification
@@ -31,7 +31,7 @@ Scheduled relay testing per the Indian Electricity Rules, Grid Code requirements
 ### IED (Intelligent Electronic Device) Testing
 Modern numerical relays (IEDs) require specialised testing approaches:
 
-- IEC 61850 GOOSE message functional testing using Kingsine K68i
+- IEC 61850 GOOSE message functional testing using K68i relay test set
 - Setting file version verification and change management record
 - Cybersecurity parameter check (open ports, default passwords)
 - Disturbance record (DR/fault record) retrieval and analysis

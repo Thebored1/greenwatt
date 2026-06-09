@@ -6,7 +6,7 @@ Green Watt is a leading Indian supplier of precision electrical testing equipmen
 
 ## What We Do
 
-Green Watt combines product supply with hands-on expertise. Our team of qualified electrical engineers sources and supports best-in-class instruments from globally recognised principals including Kingsine (relay test equipment), OFIL Systems (UV/corona and gas-detection cameras), Satir (thermal imaging), and AB Chance (safety products). Alongside equipment sales, we deliver on-site testing services — from routine energy meter calibration to advanced partial discharge surveys and thermal imaging audits.
+Green Watt combines product supply with hands-on expertise. Our team of qualified electrical engineers sources and supports best-in-class instruments from globally recognised principals including OFIL Systems (UV/corona and gas-detection cameras), Satir (thermal imaging), and AB Chance (safety products). Alongside equipment sales, we deliver on-site testing services — from routine energy meter calibration to advanced partial discharge surveys and thermal imaging audits.
 
 ## Key Capabilities
 
