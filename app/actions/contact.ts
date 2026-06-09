@@ -3,11 +3,11 @@
 import { insertSubmission } from "@/lib/submissions";
 import { Resend } from "resend";
 
-const RECIPIENTS = ["nitesh.sharma@virtualxcellence.com", "sales@greenwatt.co.in"];
+const RECIPIENTS = ["nitesh.sharma@virtualxcellence.com"];
 
 function getResend() {
-  const key = process.env.resendapi_key;
-  if (!key) throw new Error("resendapi_key env var is missing");
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY env var is missing");
   return new Resend(key);
 }
 
