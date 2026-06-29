@@ -45,7 +45,7 @@ const megaMenu: MegaMenuCategory[] = [
         subTitle: "Circuit Breaker Analysis",
         items: [
           { label: "Contact Resistance Tester" },
-          { label: "Circuit Breaker Analyzer" },
+          { label: "Circuit Breaker Analyzer", href: "/products/circuit-breaker-analyzer" },
         ],
       },
       {

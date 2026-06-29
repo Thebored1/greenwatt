@@ -35,7 +35,7 @@ const products = [
     name: "CT/PT/CVT Analyzer",
     description:
       "Advanced analyzer solutions for comprehensive testing and diagnostics of current transformers, potential transformers, and capacitive voltage transformers, ensuring accuracy, reliability, and compliance in power systems.",
-    image: `${BASE}/2026/04/Gemini-1.png`,
+    image: `${BASE}/2026/06/gw-ctpt-analyzer.jpg`,
     features: ["Comprehensive Transformer Testing", "High Measurement Accuracy", "Automated Test Routines", "Field-Ready & Portable"],
     icons: [
       `${BASE}/2026/04/noun-transformer-8081672.svg`,
