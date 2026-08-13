@@ -26,7 +26,7 @@ All instruments are sourced from globally certified manufacturers and are suppor
 - [Hipot & VLF Testers](hipot-vlf-testers.md) — AC hipot, DC hipot, and VLF (Very Low Frequency) cable testing sets
 
 ### Protection & Relay Testing
-- [Relay Testing Equipment](relay-testing-equipment.md) — K3063i and K68i protection relay test systems
+- [Relay Testing Equipment](relay-testing-equipment.md) — GW3063i and GW68i protection relay test systems
 
 ### Partial Discharge & Cable Diagnostics
 - [Partial Discharge Detectors](partial-discharge-detectors.md) — Penta-PD, digital PD, and analogue PD detectors

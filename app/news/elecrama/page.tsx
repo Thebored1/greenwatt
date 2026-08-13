@@ -68,7 +68,7 @@ export default function ElecramaPage() {
               </h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
-                  { name: "Relay Testing", link: "/products/relay-testing-equipment", desc: "K3063i and K68i protection relay test systems" },
+                  { name: "Relay Testing", link: "/products/relay-testing-equipment", desc: "GW3063i and GW68i protection relay test systems" },
                   { name: "Partial Discharge", link: "/products/partial-discharge-detectors", desc: "Penta-PD multi-channel detection system" },
                   { name: "Thermal Imaging", link: "/products/thermal-imagers", desc: "Satir range of infrared cameras" },
                   { name: "UV Corona Cameras", link: "/products/gas-detection-cameras", desc: "OFIL UV corona detection cameras" },

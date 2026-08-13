@@ -19,7 +19,7 @@ At ELECRAMA, Green Watt presents its full portfolio of electrical testing equipm
 
 ## Key Products Showcased
 
-- K3063i and K68i protection relay test systems
+- GW3063i and GW68i protection relay test systems
 - Penta-PD partial discharge detection system
 - Thermal imaging cameras (Satir range)
 - OFIL UV corona detection cameras

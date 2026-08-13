@@ -48,7 +48,7 @@ const products = [
     name: "Relay Test Kit",
     description:
       "GREENWATT offers advanced relay testing and power calibration solutions designed for precise protection system validation, commissioning, and maintenance of electrical networks.",
-    image: `${BASE}/2026/04/K3063i_L_15D-GW-Kingsine-min-300x200-2.png`,
+    image: `${BASE}/2026/04/GW3063i_L_15D-GW-Kingsine-min-300x200-2.png`,
     features: ["3-Phase & Universal Testing Capability", "High Precision Calibration", "Automated Test Sequences", "Portable & Field-Ready Design"],
     icons: [
       `${BASE}/2026/04/noun-circuit-breaker-8352296.svg`,

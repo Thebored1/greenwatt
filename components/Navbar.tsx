@@ -61,8 +61,8 @@ const megaMenu: MegaMenuCategory[] = [
       {
         subTitle: "Relay Testing",
         items: [
-          { label: "Universal Relay Test Kit (K3063i)", href: "/products/relay-testing-equipment" },
-          { label: "Universal Relay Test Kit (K68i)",   href: "/products/relay-testing-equipment" },
+          { label: "Universal Relay Test Kit (GW3063i)", href: "/products/relay-testing-equipment" },
+          { label: "Universal Relay Test Kit (GW68i)",   href: "/products/relay-testing-equipment" },
           { label: "Secondary Injection Kit",           href: "/products/relay-testing-equipment" },
         ],
       },

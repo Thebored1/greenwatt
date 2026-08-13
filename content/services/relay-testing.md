@@ -31,7 +31,7 @@ Scheduled relay testing per the Indian Electricity Rules, Grid Code requirements
 ### IED (Intelligent Electronic Device) Testing
 Modern numerical relays (IEDs) require specialised testing approaches:
 
-- IEC 61850 GOOSE message functional testing using K68i relay test set
+- IEC 61850 GOOSE message functional testing using GW68i relay test set
 - Setting file version verification and change management record
 - Cybersecurity parameter check (open ports, default passwords)
 - Disturbance record (DR/fault record) retrieval and analysis

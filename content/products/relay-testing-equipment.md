@@ -6,8 +6,8 @@ Green Watt is an authorised partner for a globally recognised manufacturer of pr
 
 ## Models Available
 
-### K3063i — Three-Phase Relay Test Set
-The K3063i is a high-performance, three-phase protection relay test system capable of testing virtually all relay types used in modern power systems, including distance protection, differential protection, overcurrent, directional earth fault, and auto-recloser schemes.
+### GW3063i — Three-Phase Relay Test Set
+The GW3063i is a high-performance, three-phase protection relay test system capable of testing virtually all relay types used in modern power systems, including distance protection, differential protection, overcurrent, directional earth fault, and auto-recloser schemes.
 
 **Key Features:**
 - 3 voltage outputs and 3 current outputs (expandable to 6 current channels)
@@ -19,8 +19,8 @@ The K3063i is a high-performance, three-phase protection relay test system capab
 - GPS/IRIG-B synchronisation for differential relay testing
 - Rugged aluminium case for field transport
 
-### K68i — New Generation Relay Test Set
-The K68i is a next-generation, compact relay test set with an integrated touch-screen interface, designed for both routine maintenance testing and advanced IED commissioning.
+### GW68i — New Generation Relay Test Set
+The GW68i is a next-generation, compact relay test set with an integrated touch-screen interface, designed for both routine maintenance testing and advanced IED commissioning.
 
 **Key Features:**
 - Integrated 10-inch colour touch-screen — no laptop required for standard tests
