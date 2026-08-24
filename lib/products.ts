@@ -130,11 +130,11 @@ export const products: Product[] = [
       "The Greenwatt GW-CT/PT Analyzer is an all-in-one instrument for testing every type of current and voltage transformer to IEC standards. A single one-time connection completes all basic CT winding and core tests in a few minutes, with a large 30 cm TFT touch screen, advanced algorithms and state-of-the-art noise reduction. At ≤ 10 kg and rated for live 220/400/765 kV switchyards, it is built for CT/PT manufacturers, testing labs, substations and power plants.",
     features: [
       "Low testing time — one-time connection runs an automatic schedule covering all basic CT winding and core tests in minutes",
-      "Highest accuracy — up to 0.02% for turns ratio and winding resistance, measuring Class 0.1 metering CTs",
+      "Highest accuracy — up to 0.02% for turns ratio, measuring Class 0.1 metering CTs",
       "High interference rejection for reliable testing inside live 220 kV, 400 kV and 765 kV charged switchyards",
       "Automatic pass/fail — compares results to the nameplate per IEC standards and flags failed parameters in red",
       "30 cm TFT colour touch screen driven by advanced algorithms and state-of-the-art noise reduction",
-      "Portable & field ready — ≤ 10 kg rugged case with quick one-click Word report generation",
+      "Portable & field ready — ≤ 10 kg rugged case with quick one-click report generation",
       "Full CT suite: excitation curve, turns ratio, ratio & phase error, polarity, coil resistance, secondary burden, error-line curve, saturation hysteresis loop and automatic demagnetization",
       "Full PT/VT suite: turns ratio & phase angle error, polarity, secondary burden and winding resistance (CVT module optional)",
     ],
@@ -147,12 +147,12 @@ export const products: Product[] = [
       "Quality assurance and revenue metering verification",
     ],
     specs: [
-      { label: "Accuracy", value: "Up to 0.02% (turns ratio & winding resistance)" },
+      { label: "Accuracy", value: "Up to 0.02% (turns ratio)" },
       { label: "Display", value: "30 cm (12 in) TFT colour touch screen" },
       { label: "Weight", value: "≤ 10 kg portable case" },
       { label: "Switchyard Rating", value: "Live 220 / 400 / 765 kV noise rejection" },
       { label: "Standards", value: "IEC 60044, IEC 61869-2, IEEE C57.13" },
-      { label: "Reporting", value: "Automatic pass/fail, one-click Word report" },
+      { label: "Reporting", value: "Automatic pass/fail, one-click report" },
     ],
   },
   {
