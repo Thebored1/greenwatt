@@ -1,14 +1,30 @@
 "use server";
 
 import { insertSubmission } from "@/lib/submissions";
+import { SITE_URL } from "@/lib/site";
 import { Resend } from "resend";
 
 const RECIPIENTS = ["nitesh.sharma@virtualxcellence.com"];
+const TEAMS = ["Sales", "Support", "Demo"];
+
+// Resend's sandbox sender only delivers to the Resend account owner —
+// set RESEND_FROM to an address on a verified domain for real delivery
+const FROM = process.env.RESEND_FROM || "Greenwatt Contact <onboarding@resend.dev>";
 
 function getResend() {
   const key = process.env.RESEND_API_KEY;
   if (!key) throw new Error("RESEND_API_KEY env var is missing");
   return new Resend(key);
+}
+
+/* Form values are untrusted — escape before interpolating into the email HTML */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 export type ContactResult =
@@ -23,11 +39,15 @@ export async function submitContact(
   const company     = (formData.get("company")     as string | null)?.trim() || null;
   const designation = (formData.get("designation") as string | null)?.trim() || null;
   const phone       = (formData.get("phone")       as string | null)?.trim() || null;
-  const team        = (formData.get("team")        as string | null) || null;
+  const rawTeam     = formData.get("team") as string | null;
+  const team        = rawTeam && TEAMS.includes(rawTeam) ? rawTeam : null;
   const message     = (formData.get("message")     as string | null)?.trim() || null;
 
   if (!name || !email) {
     return { status: "error", message: "Name and email are required." };
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { status: "error", message: "Please enter a valid email address." };
   }
 
   try {
@@ -40,8 +60,17 @@ export async function submitContact(
   /* Send notification email — fire-and-forget (don't block the response on failure) */
   try {
     const resend = getResend();
+    const safe = {
+      name:        escapeHtml(name),
+      email:       escapeHtml(email),
+      phone:       phone       && escapeHtml(phone),
+      company:     company     && escapeHtml(company),
+      designation: designation && escapeHtml(designation),
+      team:        team        && escapeHtml(team),
+      message:     message     && escapeHtml(message),
+    };
     await resend.emails.send({
-      from:    "Greenwatt Contact <onboarding@resend.dev>",
+      from:    FROM,
       to:      RECIPIENTS,
       replyTo: email,
       subject: `New enquiry from ${name}${team ? ` — ${team}` : ""}`,
@@ -53,20 +82,20 @@ export async function submitContact(
           </div>
           <div style="background:#f9fafb;padding:24px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px">
             <table style="width:100%;border-collapse:collapse;font-size:14px">
-              <tr><td style="padding:8px 0;color:#54595F;width:130px">Name</td><td style="padding:8px 0;font-weight:600">${name}</td></tr>
-              <tr><td style="padding:8px 0;color:#54595F">Email</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#0B7F3B">${email}</a></td></tr>
-              ${phone       ? `<tr><td style="padding:8px 0;color:#54595F">Phone</td><td style="padding:8px 0">${phone}</td></tr>` : ""}
-              ${company     ? `<tr><td style="padding:8px 0;color:#54595F">Company</td><td style="padding:8px 0">${company}</td></tr>` : ""}
-              ${designation ? `<tr><td style="padding:8px 0;color:#54595F">Designation</td><td style="padding:8px 0">${designation}</td></tr>` : ""}
-              ${team        ? `<tr><td style="padding:8px 0;color:#54595F">Team</td><td style="padding:8px 0"><span style="background:#D9FFDE;color:#0B7F3B;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600">${team}</span></td></tr>` : ""}
+              <tr><td style="padding:8px 0;color:#54595F;width:130px">Name</td><td style="padding:8px 0;font-weight:600">${safe.name}</td></tr>
+              <tr><td style="padding:8px 0;color:#54595F">Email</td><td style="padding:8px 0"><a href="mailto:${safe.email}" style="color:#0B7F3B">${safe.email}</a></td></tr>
+              ${safe.phone ? `<tr><td style="padding:8px 0;color:#54595F">Phone</td><td style="padding:8px 0">${safe.phone}</td></tr>` : ""}
+              ${safe.company ? `<tr><td style="padding:8px 0;color:#54595F">Company</td><td style="padding:8px 0">${safe.company}</td></tr>` : ""}
+              ${safe.designation ? `<tr><td style="padding:8px 0;color:#54595F">Designation</td><td style="padding:8px 0">${safe.designation}</td></tr>` : ""}
+              ${safe.team ? `<tr><td style="padding:8px 0;color:#54595F">Team</td><td style="padding:8px 0"><span style="background:#D9FFDE;color:#0B7F3B;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600">${safe.team}</span></td></tr>` : ""}
             </table>
-            ${message ? `
+            ${safe.message ? `
             <div style="margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:6px">
               <p style="margin:0 0 6px;font-size:12px;color:#54595F;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Message</p>
-              <p style="margin:0;font-size:14px;line-height:1.6;white-space:pre-wrap">${message}</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;white-space:pre-wrap">${safe.message}</p>
             </div>` : ""}
             <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e5e7eb">
-              <a href="https://greenwatt-2gtlc4ae3-niteshatvirtualexcellence.vercel.app/admin/submissions"
+              <a href="${SITE_URL}/admin/submissions"
                  style="display:inline-block;background:#0B7F3B;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600">
                 View in Admin →
               </a>

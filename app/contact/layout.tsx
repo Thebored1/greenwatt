@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { SITE_URL, sharedOpenGraph } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with Greenwatt Global Ventures. Reach our sales, support, or demo teams for electrical testing equipment, thermal imaging, solar PV testers, and more.",
-  alternates: { canonical: "https://greenwatt.vercel.app/contact" },
+  alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: {
-    url: "https://greenwatt.vercel.app/contact",
+    ...sharedOpenGraph,
+    url: `${SITE_URL}/contact`,
     title: "Contact Greenwatt Global Ventures",
     description:
       "Reach our sales, support, or demo teams for electrical testing equipment enquiries.",

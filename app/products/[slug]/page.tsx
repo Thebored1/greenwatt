@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { getProduct, products } from "@/lib/products";
+import { SITE_URL, sharedOpenGraph } from "@/lib/site";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -14,12 +15,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return {};
-  const url = `https://greenwatt.vercel.app/products/${slug}`;
+  const url = `${SITE_URL}/products/${slug}`;
   return {
     title: product.name,
     description: product.tagline,
     alternates: { canonical: url },
     openGraph: {
+      ...sharedOpenGraph,
       url,
       title: product.name,
       description: product.tagline,

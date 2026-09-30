@@ -4,7 +4,7 @@ import PageHero from "@/components/PageHero";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Our Clients | Greenwatt Global Ventures",
+  title: "Our Clients",
   description: "Trusted by NTPC, NPCIL, L&T, Adani, Indian Railways, PGCIL and many more of India's leading power sector organisations.",
 };
 

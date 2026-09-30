@@ -1,6 +1,6 @@
 import LoginForm from "./LoginForm";
 
-export const metadata = { title: "Admin Login | Greenwatt" };
+export const metadata = { title: { absolute: "Admin Login | Greenwatt" } };
 
 type SearchParams = Promise<{ error?: string }>;
 

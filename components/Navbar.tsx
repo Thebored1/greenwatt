@@ -170,7 +170,8 @@ export default function Navbar() {
   const toggleGroup = (gi: number) => {
     setExpandedGroups(prev => {
       const next = new Set(prev);
-      next.has(gi) ? next.delete(gi) : next.add(gi);
+      if (next.has(gi)) next.delete(gi);
+      else next.add(gi);
       return next;
     });
   };
@@ -191,9 +192,9 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0" onClick={closeMenu}>
           <Image
-            src="/wp-uploads/2026/04/green-logo.png"
+            src="/greenwatt-logo.png"
             alt="Greenwatt Global Ventures"
-            width={160} height={50}
+            width={161} height={48}
             className="h-12 w-auto object-contain"
             priority
           />

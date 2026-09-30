@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 import { sectors } from "@/lib/sectors";
 
 export const metadata = {
-  title: "Sectors | Greenwatt Global Ventures",
+  title: "Sectors",
   description: "Electrical testing solutions across power substations, solar PV, transmission lines, oil & gas, data centres, telecom, and aerospace.",
 };
 

@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 import { productCategories } from "@/lib/products";
 
 export const metadata = {
-  title: "Products | Greenwatt Global Ventures",
+  title: "Products",
   description: "Comprehensive range of electrical testing and diagnostic instruments for power utilities, contractors, and industrial operators.",
 };
 

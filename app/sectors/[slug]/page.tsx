@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { getSector, sectors } from "@/lib/sectors";
 import { getProduct } from "@/lib/products";
+import { SITE_URL, sharedOpenGraph } from "@/lib/site";
 
 export function generateStaticParams() {
   return sectors.map((s) => ({ slug: s.slug }));
@@ -14,12 +15,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const sector = getSector(slug);
   if (!sector) return {};
-  const url = `https://greenwatt.vercel.app/sectors/${slug}`;
+  const url = `${SITE_URL}/sectors/${slug}`;
   return {
     title: sector.name,
     description: sector.tagline,
     alternates: { canonical: url },
-    openGraph: { url, title: sector.name, description: sector.tagline },
+    openGraph: { ...sharedOpenGraph, url, title: sector.name, description: sector.tagline },
   };
 }
 

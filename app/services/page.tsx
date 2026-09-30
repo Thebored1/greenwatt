@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 import { services } from "@/lib/services";
 
 export const metadata = {
-  title: "Services | Greenwatt Global Ventures",
+  title: "Services",
   description: "Professional on-site electrical testing and inspection services delivered by qualified electrical engineers across India.",
 };
 

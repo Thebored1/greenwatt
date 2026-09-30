@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 
 export const metadata = {
-  title: "Green Watt at ELECRAMA | Greenwatt Global Ventures",
+  title: "Green Watt at ELECRAMA",
   description: "Green Watt participates in ELECRAMA, India's largest electrical industry exhibition organised by IEEMA.",
 };
 

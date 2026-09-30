@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { getService, services } from "@/lib/services";
+import { SITE_URL, sharedOpenGraph } from "@/lib/site";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -13,12 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  const url = `https://greenwatt.vercel.app/services/${slug}`;
+  const url = `${SITE_URL}/services/${slug}`;
   return {
     title: service.name,
     description: service.tagline,
     alternates: { canonical: url },
-    openGraph: { url, title: service.name, description: service.tagline },
+    openGraph: { ...sharedOpenGraph, url, title: service.name, description: service.tagline },
   };
 }
 

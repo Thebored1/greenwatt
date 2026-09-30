@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 
 export const metadata = {
-  title: "About Us | Greenwatt Global Ventures",
+  title: "About Us",
   description: "Founded by engineers with deep roots in India's power sector, Green Watt brings world-class electrical testing technology to Indian organisations.",
 };
 

@@ -2,14 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const quickLinks = ["Solutions", "Products", "Industries", "About Us", "Contact Us"];
+const quickLinks = [
+  { label: "Solutions",  href: "/services" },
+  { label: "Products",   href: "/products" },
+  { label: "Industries", href: "/sectors" },
+  { label: "About Us",   href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+];
 
-const applications = [
-  "AB Chance-Hot Line Tools",
-  "CT/PT Analyzer",
-  "Gas Detection Camera",
-  "Industrial Automation",
-  "Solar PV Testing Equipments",
+/* No href = no page yet (matches the non-clickable Navbar entry) */
+const applications: { label: string; href?: string }[] = [
+  { label: "AB Chance-Hot Line Tools",    href: "/products" },
+  { label: "CT/PT Analyzer",              href: "/products/ct-pt-analyzer" },
+  { label: "Gas Detection Camera",        href: "/products/gas-detection-cameras" },
+  { label: "Industrial Automation" },
+  { label: "Solar PV Testing Equipments", href: "/products/solar-pv-testing" },
 ];
 
 export default function Footer() {
@@ -20,10 +27,10 @@ export default function Footer() {
         {/* Col 1 — Brand */}
         <div>
           <Image
-            src="/wp-uploads/2026/04/logo-white-foot.png"
-            alt="Greenwatt"
-            width={150}
-            height={48}
+            src="/greenwatt-logo-white.png"
+            alt="Greenwatt Global Ventures"
+            width={134}
+            height={40}
             className="h-10 w-auto object-contain mb-5"
             unoptimized
           />
@@ -57,9 +64,9 @@ export default function Footer() {
           <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">Quick Links</h4>
           <ul className="space-y-2.5">
             {quickLinks.map((l) => (
-              <li key={l}>
-                <Link href="#" className="text-sm hover:text-white transition-colors flex items-center gap-2">
-                  <span className="text-[#0B7F3B]">›</span> {l}
+              <li key={l.label}>
+                <Link href={l.href} className="text-sm hover:text-white transition-colors flex items-center gap-2">
+                  <span className="text-[#0B7F3B]">›</span> {l.label}
                 </Link>
               </li>
             ))}
@@ -71,10 +78,16 @@ export default function Footer() {
           <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-5">Applications</h4>
           <ul className="space-y-2.5">
             {applications.map((a) => (
-              <li key={a}>
-                <Link href="#" className="text-sm hover:text-white transition-colors flex items-center gap-2">
-                  <span className="text-[#0B7F3B]">›</span> {a}
-                </Link>
+              <li key={a.label}>
+                {a.href ? (
+                  <Link href={a.href} className="text-sm hover:text-white transition-colors flex items-center gap-2">
+                    <span className="text-[#0B7F3B]">›</span> {a.label}
+                  </Link>
+                ) : (
+                  <span className="text-sm flex items-center gap-2 cursor-default">
+                    <span className="text-[#0B7F3B]">›</span> {a.label}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

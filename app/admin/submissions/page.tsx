@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getSubmissions } from "@/lib/submissions";
 import ReadToggle from "./ReadToggle";
 
-export const metadata = { title: "Submissions | Greenwatt Admin" };
+export const metadata = { title: { absolute: "Submissions | Greenwatt Admin" } };
 
 const TEAM_COLORS: Record<string, string> = {
   Sales: "bg-green-100 text-green-800",
